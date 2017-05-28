@@ -1,8 +1,6 @@
 ImageLibrary
 ================
-[![alt text](https://www.codeheight.com/content/img/codeheight_370x267.jpg "CodeHeight Solutions")](https://www.codeheight.com)
-
-ImageLibrary is a small role based web application that implements a mulitple image file upload feature powered by jQuery. The primary objective of this project is to provide an example web application for building real-world web applications with ASP.NET MVC 5 and jQuery.FileUpload plugin.
+ImageLibrary is a small role based web application that implements a mulitple image file upload feature powered by jQuery and is database driven by assigning unique identifiers to all images and image groups. The primary objective of this project is to provide an example web application for building real-world web applications with ASP.NET MVC 5 and jQuery.FileUpload plugin.
 
 
 Technologies
@@ -32,8 +30,8 @@ Goals
  
 Screenshots
 -----------------
-![Multiple Image Upload](https://https://www.codeheight.com/content/img/github/ImageLibrary01.png)
+![Multiple Image Upload](https://www.codeheight.com/content/img/github/ImageLibrary01.png)
 
 -----------------
 
-![Multiple Image Upload Processing](https://https://www.codeheight.com/content/img/github/ImageLibrary02.png)
+![Multiple Image Upload Processing](https://www.codeheight.com/content/img/github/ImageLibrary02.png)
