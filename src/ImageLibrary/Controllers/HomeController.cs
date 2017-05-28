@@ -29,33 +29,53 @@ namespace ImageLibrary.Controllers
         {
             LatestAddedAuctionViewModel viewModel = new LatestAddedAuctionViewModel();
             var auctions = _db.Auctions;
-            if (auctions != null)
+            if (auctions.Any())
             {
-                //grab latest auction
-                var latestAuctionList = auctions.OrderByDescending(u => u.CreateDate);
-                var latestAuction = (from m in latestAuctionList select m).FirstOrDefault();
-                var firstClosedAuction = latestAuctionList.Skip(1).FirstOrDefault();
-                viewModel.auction = latestAuction;
-                //get a count of images
-                serverMapPath = "~/Files/" + latestAuction.Id + "/";
-                StorageRoot = Path.Combine(HostingEnvironment.MapPath(serverMapPath));
-                int fileCount = Directory.GetFiles(StorageRoot, "*", SearchOption.TopDirectoryOnly).Length;
-                viewModel.imageCount = fileCount;
-                //get the image location
-                UrlBase = "/Files/" + latestAuction.Id + "/";
-                filesHelper = new FilesHelper(DeleteURL, DeleteType, StorageRoot, UrlBase, tempPath, serverMapPath);
-                var list = filesHelper.FilesList(latestAuction.Id);
-                viewModel.Images = list.ToList();
-                //get last closed auction
-                serverMapPath = "~/Files/" + firstClosedAuction.Id + "/";
-                StorageRoot = Path.Combine(HostingEnvironment.MapPath(serverMapPath));
-                int fileCount2 = Directory.GetFiles(StorageRoot, "*", SearchOption.TopDirectoryOnly).Length;
-                viewModel.closedImageCount = fileCount2;
-                UrlBase = "/Files/" + firstClosedAuction.Id + "/";
-                filesHelper = new FilesHelper(DeleteURL, DeleteType, StorageRoot, UrlBase, tempPath, serverMapPath);
-                var closedAuction = filesHelper.FilesList(firstClosedAuction.Id);
-                viewModel.ClosedImages = closedAuction.ToList();
-                viewModel.closedAuction = firstClosedAuction;
+                var currentBanner = auctions.FirstOrDefault(u => u.CurrentBanner == true);
+                if (currentBanner != null)
+                {
+                    viewModel.CurrentAuction = currentBanner;
+                    serverMapPath = "~/Files/" + currentBanner.Id + "/";
+                    StorageRoot = Path.Combine(HostingEnvironment.MapPath(serverMapPath));
+                    if (Directory.Exists(StorageRoot))
+                    {
+                        int fileCount = Directory.GetFiles(StorageRoot, "*", SearchOption.TopDirectoryOnly).Length;
+                        viewModel.imageCount = fileCount;
+                        UrlBase = "/Files/" + currentBanner.Id + "/";
+                        filesHelper = new FilesHelper(DeleteURL, DeleteType, StorageRoot, UrlBase, tempPath, serverMapPath);
+                        var list = filesHelper.FilesList(currentBanner.Id);
+                        viewModel.CurrentImages = list.ToList();
+                    }
+                    else
+                    {
+                        viewModel.imageCount = 0;
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+                //bottom banner
+                var previousBanner = auctions.FirstOrDefault(u => u.PreviousBanner == true);
+                if (previousBanner != null)
+                {
+                    viewModel.PreviousAuction = previousBanner;
+                    serverMapPath = "~/Files/" + previousBanner.Id + "/";
+                    StorageRoot = Path.Combine(HostingEnvironment.MapPath(serverMapPath));
+                    int fileCount2 = Directory.GetFiles(StorageRoot, "*", SearchOption.TopDirectoryOnly).Length;
+                    if (Directory.Exists(StorageRoot))
+                    {
+                        viewModel.closedImageCount = fileCount2;
+                        UrlBase = "/Files/" + previousBanner.Id + "/";
+                        filesHelper = new FilesHelper(DeleteURL, DeleteType, StorageRoot, UrlBase, tempPath, serverMapPath);
+                        var list2 = filesHelper.FilesList(previousBanner.Id);
+                        viewModel.PreviousImages = list2.ToList();
+                    }
+                    else
+                    {
+                        viewModel.closedImageCount = 0;
+                    }
+                }
             }
             return View(viewModel);
         }

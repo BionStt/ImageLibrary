@@ -16,6 +16,11 @@ namespace ImageLibrary.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        [Display(Name = "Primary Banner")]
+        public bool PrimaryBanner { get; set; }
+
+        [Display(Name = "Secondary Banner")]
+        public bool SecondaryBanner { get; set; }
     }
 
     public class EditAuctionViewModel
@@ -23,17 +28,23 @@ namespace ImageLibrary.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [Display(Name = "Primary Banner")]
+        public bool PrimaryBanner { get; set; }
+
+        [Display(Name = "Secondary Banner")]
+        public bool SecondaryBanner { get; set; }
     }
 
     public class LatestAddedAuctionViewModel
     {
-        public Auction auction { get; set; }
+        public Auction CurrentAuction { get; set; }
 
-        public Auction closedAuction { get; set; }
+        public Auction PreviousAuction { get; set; }
         public int imageCount { get; set; }
         public int closedImageCount { get; set; }
 
-        public List<ViewDataUploadFilesResult> Images { get; set; }
-        public List<ViewDataUploadFilesResult> ClosedImages { get; set; }
+        public List<ViewDataUploadFilesResult> CurrentImages { get; set; }
+        public List<ViewDataUploadFilesResult> PreviousImages { get; set; }
     }
 }

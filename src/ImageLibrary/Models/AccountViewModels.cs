@@ -1,7 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
-// New namespace imports:
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 
 namespace ImageLibrary.Models

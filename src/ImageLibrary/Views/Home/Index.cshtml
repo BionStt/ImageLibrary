@@ -9,11 +9,11 @@
     @Scripts.Render("~/Scripts")
 }
 
-<!-- Banner -->
+
 <section class="m-t-30">
     <div class="container text-center">
         <div class="thumb p-30">
-            <div class="banner banner-2x bg-img-3 bg-8 text-left  no-bg-img-xs ">
+            <div class="banner banner-2x bg-img-3 bg-8 text-left no-bg-img-xs ">
                 <div class="caption">
                     <h1 class="heading-size-4 f-normal">Auction's For</h1>
                     <h2 class="heading-size-1">You!</h2>
@@ -22,59 +22,93 @@
         </div>
     </div>
 </section>
-<!-- Product slider -->
+
 <section>
     <div class="container">
-        <h3 class="title">Auction Items for @Model.auction.Name</h3>
-        <div class="thumb p-30 p-b-0">
-            <div class="row product-2">
-                <div class="owl" data-items="4" data-itemsDesktop="3" data-itemsDesktopSmall="2" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
-                    @foreach (var item in Model.Images)
-                    {
-                        <div class="col-lg-12">
-                            <!-- Product item -->
-                            <div class="product-item hover-img">
-                                <div class="product-img">
-                                    <img src="@item.url" alt="image">
+        @if (Model.CurrentAuction != null)
+        {
+            <h3 class="title">Auction Items for @Model.CurrentAuction.Name</h3>
+            <div class="thumb p-30">
+                <div class="row" style="padding-bottom: 5px;">
+                    @Model.CurrentAuction.Description<span><br />  <a class="btn ht-btn bg-4 m-t-10" href="@Url.Action("Show", "FileUpload", new { id = Model.CurrentAuction.Id })">View more pictures.</a></span>
+                </div>
+            </div>
+            <div class="thumb p-30 p-b-0">
+                <div class="row product-2">
+                    <div class="owl" data-items="4" data-itemsDesktop="3" data-itemsDesktopSmall="2" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
+                        @if (Model.imageCount != 0)
+                        {
+                            foreach (var item in Model.CurrentImages.Take(9))
+                            {
+                                <div class="col-lg-12">
+                                    <!-- Product item -->
+                                    <div class="product-item hover-img">
+                                        <div class="product-img">
+                                            <img src="@item.url" alt="image">
+                                        </div>
+                                        @*<div class="product-caption">
+                                                <h4 class="product-name">
+                                                    <span style="color: white;"></span>
+                                                </h4>
+                                                <div class="product-price-group">
+                                                    <span class="product-price-old"></span>
+                                                    <span class="product-price"></span>
+                                                </div>
+                                            </div>*@
+                                    </div>
                                 </div>
-                                <div class="product-caption">
-                                    <h4 class="product-name">
-                                        <span style="color: white;"></span>
-                                    </h4>
-                                    <div class="product-price-group">
-                                        <span class="product-price-old"></span>
-                                        <span class="product-price"></span>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-lg-12">
+                                <div class="product-item hover-img">
+                                    <div class="product-img">
+                                        <span>No pictures have been added for this auction.</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <h3 class="title">No primary auction is currently enabled.</h3>
+            <div class="thumb p-30 p-b-0">
+                <div class="row product-2">
+                    <div class="owl" data-items="4" data-itemsDesktop="3" data-itemsDesktopSmall="2" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
+
+                        <div class="col-lg-12">
+                            <div class="product-item hover-img">
+                                <div class="product-img">
+                                    <span>No pictures to display</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </section>
-<!-- Hot deal -->
-@*<section>
-    <div class="container">
-        <div class="banner banner-2x banner-1 bg-img-4 bg-white bor-rand-15 no-bg-img-xs">
-            <div class="caption">
-                <h4 class="heading-size-5">from 4-15 may</h4>
-                <h2 class="heading-size-2 f-bold">Sale Extra 46%</h2>
-                <h3 class="heading-size-3 color-3 f-normal">on all order</h3>
-                <a href="#" class="btn ht-btn ht-btn-2x bg-4">Shop now</a>
-            </div>
-        </div>
-    </div>
-</section>*@
-<!-- Brand logo -->
 <div class="process m-t-60">
     <div class="container">
-        <div class="brand m-t-20">
-            <div class="row">
-                <h3 class="title">Previous auction Items for @Model.closedAuction.Name</h3>
-                <div class="owl" data-items="6" data-itemsDesktop="5" data-itemsDesktopSmall="3" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
-                    @foreach (var item in Model.ClosedImages)
+@if (Model.PreviousAuction != null)
+{
+    <div class="brand m-t-20">
+        <div class="row">
+            <h3 class="title">Auction Items for @Model.PreviousAuction.Name</h3>
+            <div>
+                <div class="row" style="padding-bottom: 5px;">
+                    @Model.PreviousAuction.Description<span><br />  <a class="btn ht-btn bg-4 m-t-10" href="@Url.Action("Show", "FileUpload", new { id = Model.PreviousAuction.Id })">View more pictures.</a></span>
+                </div>
+            </div>
+            <div class="owl" data-items="6" data-itemsDesktop="5" data-itemsDesktopSmall="3" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
+                @if (Model.closedImageCount != 0)
+                {
+                    foreach (var item in Model.PreviousImages.Take(9))
                     {
                         <div class="col-lg-12">
                             <div class="product-item hover-img">
@@ -84,8 +118,38 @@
                             </div>
                         </div>
                     }
-                </div>
+                }
+                else
+                {
+                    <div class="col-lg-12">
+                        <div class="product-item hover-img">
+                            <div class="product-img">
+                                <span>No pictures have been added for this auction.</span>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
+    </div>
+}
+else
+{
+    <div class="brand m-t-20">
+        <div class="row">
+            <h3 class="title">No secondary auction is currently enabled.</h3>
+            <div class="owl" data-items="6" data-itemsDesktop="5" data-itemsDesktopSmall="3" data-itemsTablet="2" data-itemsMobile="1" data-transitionstyle="backslide" data-singleItem="false" data-autoplay="3000" data-pag="false" data-buttons="false">
+                    <div class="col-lg-12">
+                        <div class="product-item hover-img">
+                            <div class="product-img">
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+}
+
     </div>
 </div>
