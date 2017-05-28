@@ -51,10 +51,6 @@ namespace ImageLibrary.Controllers
                         viewModel.imageCount = 0;
                     }
                 }
-                else
-                {
-                    return RedirectToAction("Error", "Home");
-                }
                 //bottom banner
                 var previousBanner = auctions.FirstOrDefault(u => u.PreviousBanner == true);
                 if (previousBanner != null)

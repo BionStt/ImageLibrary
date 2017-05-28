@@ -24,10 +24,14 @@
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             @Html.ActionLink("Create New Auction", "Create", null, htmlAttributes: new { @class = "btn ht-btn bg-4 m-t-10" })
                         </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <span style="color: blue"><i class="fa fa-star"></i>Primary Auction</span><br />
+                        <span style="color: red"><i class="fa fa-star"></i>Previous Auction</span>
                     </div>
                 </div>
             }
@@ -45,6 +49,14 @@
                                         </td>
                                     }
                                     <td style="vertical-align: middle;">
+                                        @if (item.CurrentBanner == true)
+                                        {
+                                            <span style="color: blue"><i class="fa fa-star"></i></span>
+                                        }
+                                        @if (item.PreviousBanner == true)
+                                        {
+                                            <span style="color: red"><i class="fa fa-star"></i></span>
+                                        }
                                         @item.Name
                                     </td>
                                     <td style="vertical-align: middle;">

@@ -38,6 +38,8 @@ namespace ImageLibrary.Controllers
             auction.Name = viewModel.Name;
             auction.Description = viewModel.Description;
             auction.CreateDate = DateTime.Now;
+            auction.CurrentBanner = viewModel.PrimaryBanner;
+            auction.PreviousBanner = viewModel.SecondaryBanner;
             _db.Entry(auction).State = System.Data.Entity.EntityState.Added;
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -50,6 +52,8 @@ namespace ImageLibrary.Controllers
             var auction = _db.Auctions.First(a => a.Id == id);
             viewModel.Name = auction.Name;
             viewModel.Description = auction.Description;
+            viewModel.PrimaryBanner = auction.CurrentBanner;
+            viewModel.SecondaryBanner = auction.PreviousBanner;
             return View(viewModel);
         }
 
@@ -60,6 +64,8 @@ namespace ImageLibrary.Controllers
             auction.Id = viewModel.Id;
             auction.Name = viewModel.Name;
             auction.Description = viewModel.Description;
+            auction.CurrentBanner = viewModel.PrimaryBanner;
+            auction.PreviousBanner = viewModel.SecondaryBanner;
             _db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index");
