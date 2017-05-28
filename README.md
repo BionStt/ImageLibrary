@@ -17,7 +17,8 @@ Running the Application
 
 1. Open the solution in Visual Studio 2015. Build the solution.
 2. Open the web.config and change the connecting string "DefaultConnection" for working with your system.
-3. Execute Update-Database to initialize tables
+3. Execute Update-Database to initialize tables.
+4. Run the application and login as admin/Password1.
 
 Goals
 -----------------
