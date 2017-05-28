@@ -30,3 +30,10 @@ Goals
 * Improve developer productivity for building web application on the Microsoft Web stack.
 * Implement jQuery.FileUpload and provide database backend to manage images.
  
+Screenshots
+-----------------
+![Multiple Image Upload](https://https://www.codeheight.com/content/img/github/ImageLibrary01.png)
+
+-----------------
+
+![Multiple Image Upload Processing](https://https://www.codeheight.com/content/img/github/ImageLibrary02.png)
