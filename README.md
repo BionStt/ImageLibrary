@@ -1,4 +1,4 @@
-SocialGoal v1.0.0
+ImageLibrary v1.0.0
 ================
 [![alt text](https://www.codeheight.com/content/img/codeheight_370x267.jpg "CodeHeight Solutions")](https://www.codeheight.com)
 
