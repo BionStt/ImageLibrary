@@ -27,4 +27,5 @@ Goals
 * Web application that impliments a multiple image selection with one submission.
 * A reference web application for ASP.NET MVC 5 and EF 6 Code First.
 * Improve developer productivity for building web application on the Microsoft Web stack.
+* Implement jQuery.FileUpload and provide database backend to manage images.
  
