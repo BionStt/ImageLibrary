@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeHeight Solutions">
+    <meta name="keywords" content="CodeHeight Solutions">
+    <meta name="author" content="CodeHeight Solutions" />
+    <meta name="contact" content="CodeHeight Solutions" />
+    <meta name="copyright" content="CodeHeight Solutions">
+    <meta name="msvalidate.01" content="1B4B718FC1547731A98F613F56221C51" />
+    <title>ImageLibrary</title>
+    @RenderSection("styles", required: true)
+    @RenderSection("scripts", required: true)
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" />
+</head>
+<body>
+    <div class="preloader">
+        <i class="fa fa-spinner"></i>
+    </div>
+    <header>
+        <div class="container">
+            <!-- Top menu -->
+            <div class="row m-t-15">
+                <div class="col-sm-2 col-md-4 hidden-xs">
+                    <div class="cloud-3"></div>
+                </div>
+                <div class="col-sm-4 col-md-3">
+                    <div class="search-box">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 hidden-xs">
+                    @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-2">
+                    <!-- Logo -->
+                    <a href="@Url.Action("Index", "Home")" class="logo">
+                        <img src="~/Content/images/logo.png" alt="logo">
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-10">
+                    @Html.Partial("~/Views/Shared/_TopMenu.cshtml")
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+    @RenderBody()
+
+
+
+    <footer class="color-inher">
+        <div class="bot-pie"></div>
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 m-b-xs-30">
+                        <h3 class="title">Follow Us:</h3>
+                    </div>
+                    <div class="col-sm-3 m-b-xs-30">
+                        <h3 class="title"></h3>
+                        <ul class="social_link">
+                            <li><a href="https://www.facebook.com/pbauctionco/" target="_blank"><i class="fa fa-facebook"></i>Facebook</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 m-b-xs-30">
+                        <h3 class="title"></h3>
+                        <ul class="social_link">
+                            <li><a href="https://twitter.com/pbauctionco" target="_blank"><i class="fa fa-twitter"></i>Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 m-b-xs-30">
+                        <h3 class="title"></h3>
+                        <ul class="social_link">
+                            <li><a href="#"><i class="fa fa-youtube"></i>YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bt">
+            <div class="container">
+                <p>© 2017 Designed by <a href="https://www.codeheight.com" target="_blank">CodeHeight Solutions, LLC</a>.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

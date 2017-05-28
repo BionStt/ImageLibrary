@@ -1,0 +1,21 @@
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
+namespace ImageLibrary.Models
+{
+    public class ApplicationRole : IdentityRole
+    {
+        public string Description { get; set; }
+
+        public ApplicationRole() : base()
+        {
+        }
+
+
+        public ApplicationRole(string roleName) : base(roleName)
+        {
+        }
+    }
+}

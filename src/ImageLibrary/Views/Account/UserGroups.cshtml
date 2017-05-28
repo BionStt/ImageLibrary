@@ -1,0 +1,100 @@
+﻿@model ImageLibrary.Models.SelectUserGroupsViewModel
+@{
+    ViewBag.Title = "User Groups";
+}
+@section styles {
+    @Styles.Render("~/Styles")
+}
+@section scripts {
+    @Scripts.Render("~/Scripts")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<section class="m-t-0">
+    <div class="container">
+        <div class="thumb p-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Group Assignments for @Html.DisplayFor(model => model.UserName)</h2>
+                    @using (Html.BeginForm("UserGroups", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.UserName)
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <table class="table">
+                                    <tr>
+                                        <th style="text-align: center;">
+                                            Select
+                                        </th>
+                                        <th>
+                                            Group
+                                        </th>
+                                    </tr>
+                                    @Html.EditorFor(model => model.Groups)
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn ht-btn bg-4 m-t-10">Save</button>
+                                @Html.ActionLink("Cancel", "Index", "Account", routeValues: null, htmlAttributes: new { @class = "btn ht-btn bg-3" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process">
+    <div class="container">
+        <div class="row m-l-r-5">
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-cogs color-3"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-3">Settings</h5>
+                        Registered Users
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-image color-7"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-7">Pictures</h5>
+                        Manage Images
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-money color-4"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-4">Payments</h5>
+                        Buyers/Sellers
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-legal color-5"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-5">Auctions</h5>
+                        Manage Items
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

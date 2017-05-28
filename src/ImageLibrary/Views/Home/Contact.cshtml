@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+@section styles {
+    @Styles.Render("~/Styles")
+}
+@section scripts {
+    @Scripts.Render("~/Scripts")
+}
+
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home m-r-5"></i>Home</a></li>
+        <li>Contact</li>
+    </ul>
+</div>
+<section class="m-t-0">
+    <div class="container">
+        <div class="thumb p-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="thumb p-30">
+                        <h3 class="title">Contact us</h3>
+                        <div id="EmailConfirmation"></div>
+                        <div class="row">
+                            <div class="col-sm-7 col-md-7 col-lg-8">
+                                <form class="contact-form">
+                                    <div class="form-group">
+                                        <input type="text" name="RecipientName" class="form-control form-item" id="RecipientName" placeholder="Name" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="RecipientEmail" class="form-control form-item" id="RecipientEmail" placeholder="Email" required="required">
+                                    </div>
+                                    <textarea class="form-control form-item h-200 m-b-15" placeholder="Your message" rows="3" id="RecipientMessage" name="RecipientMessage" required="required"></textarea>
+                                    <input type="submit" value="Send" name="EmailSendButton" id="EmailSendButton" class="btn ht-btn bg-3" title="Send" onclick="EmailData()" />
+                                </form>
+                            </div>
+                            <div class="col-sm-5 col-md-5 col-lg-4 p-t-40">
+                                <p class="f-25 f-bold m-t-20">(111) 222-3333</p>
+                                <p class="m-b-15">admin@email.com</p>
+                                <p>Downtown Area, Montgomery, AL 36104</p>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Process -->
+<section class="process">
+    <div class="container">
+        <div class="row m-l-r-5">
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-cogs color-3"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-3">Settings</h5>
+                        Registered Users
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-image color-7"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-7">Pictures</h5>
+                        Manage Images
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-money color-4"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-4">Payments</h5>
+                        Buyers/Sellers
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-legal color-5"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-5">Auctions</h5>
+                        Manage Items
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+
+
+<script>
+    function EmailData() {
+        $("#EmailSendButton").attr("disabled", "true");
+
+        var url = "/Home/EmailData";
+        var recipientName = $("#RecipientName").val();
+        var recipientEmail = $("#RecipientEmail").val();
+        var recipientMessage = $("#RecipientMessage").val();
+        var postData = { 'Name': recipientName, 'Email': recipientEmail, 'Message': recipientMessage }
+        $.post(url, postData, function (result) {
+            $("#EmailConfirmation").css({ 'display': 'block' });
+            $("#EmailConfirmation").text(result);
+            $("#EmailConfirmation").attr({ class: 'alert alert-success' })
+            $("#RecipientName").val('Name');
+            $("#RecipientEmail").val('Email');
+            $("#RecipientMessage").val('Your Message');
+        })
+    }
+</script>

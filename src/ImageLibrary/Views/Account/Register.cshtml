@@ -1,0 +1,128 @@
+﻿@model ImageLibrary.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    @Styles.Render("~/Styles")
+}
+@section scripts {
+    @Scripts.Render("~/Scripts")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home m-r-5"></i>Home</a></li>
+        <li>Register</li>
+    </ul>
+</div>
+<section class="m-t-0">
+    <div class="container">
+        <div class="thumb p-30">
+            <div id="content">
+                <h3 class="title">Registration</h3>
+                <p>If you already have an account with us, please login at the <a href="@Url.Action("Login", "Account")" class="color-2">login page</a>.</p>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+                    <fieldset id="account">
+                        <legend>Your Account Details</legend>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-item" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn ht-btn bg-3 m-t-10" value="Register" />
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process">
+    <div class="container">
+        <div class="row m-l-r-5">
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-cogs color-3"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-3">Settings</h5>
+                        Registered Users
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-image color-7"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-7">Pictures</h5>
+                        Manage Images
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-money color-4"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-4">Payments</h5>
+                        Buyers/Sellers
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-legal color-5"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-5">Auctions</h5>
+                        Manage Items
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

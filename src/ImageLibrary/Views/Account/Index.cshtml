@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ImageLibrary.Models.EditUserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+@section styles {
+    @Styles.Render("~/Styles")
+}
+@section scripts {
+    @Scripts.Render("~/Scripts")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home m-r-5"></i>Home</a></li>
+        <li>Manage</li>
+    </ul>
+</div>
+<section class="m-t-0">
+    <div class="container">
+        <div class="thumb p-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.UserName }, htmlAttributes: new { @class = "btn ht-btn bg-4 m-t-10" })
+                                    @Html.ActionLink("Groups", "UserGroups", new { id = item.UserName }, htmlAttributes: new { @class = "btn ht-btn bg-4 m-t-10" })
+                                    @Html.ActionLink("Effective Permissions", "UserPermissions", new { id = item.UserName }, htmlAttributes: new { @class = "btn ht-btn bg-4 m-t-10" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.UserName }, htmlAttributes: new { @class = "btn ht-btn bg-3 m-t-10" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Process -->
+<section class="process">
+    <div class="container">
+        <div class="row m-l-r-5">
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-cogs color-3"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-3">Settings</h5>
+                        Registered Users
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-image color-7"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-7">Pictures</h5>
+                        Manage Images
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-money color-4"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-4">Payments</h5>
+                        Buyers/Sellers
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3 p-5">
+                <div class="media ht-media">
+                    <div class="media-left">
+                        <i class="fa fa-legal color-5"></i>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading color-5">Auctions</h5>
+                        Manage Items
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+﻿@model ImageLibrary.Models.SelectGroupEditorViewModel
+@Html.HiddenFor(model => model.GroupId)
+@Html.HiddenFor(model => model.GroupName)
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.Selected)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.GroupName)
+    </td>
+</tr>
+
